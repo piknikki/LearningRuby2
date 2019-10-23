@@ -1,5 +1,5 @@
-random_number = Random.new.rand(5)
-
+# random_number = Random.new.rand(5)
+#
 # loop do
 #   print "guess the number between 0 and 5 (or e to exit): "
 #   answer = gets.chomp.downcase
@@ -15,15 +15,15 @@ random_number = Random.new.rand(5)
 #     end
 #   end
 # end
-#
-# loop do
-#   print "Enter a number greater than 10 to exit: "
-#   answer = gets.chomp.to_i
-#   if answer > 10
-#     break
-#   end
-# end
-#
+
+loop do
+  print "Enter a number greater than 10 to exit: "
+  answer = gets.chomp.to_i
+  if answer > 10
+    break
+  end
+end
+
 loop do
   print "Enter a number greater than 10 to exit: "
   answer = gets.chomp.to_i
