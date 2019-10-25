@@ -5,7 +5,9 @@ class Monster
     @name = name
     @actions = {
         screams: 0,
-        scares: 0
+        scares: 0,
+        screams_back: 0,
+        hides: 0
     }
   end
 
@@ -21,6 +23,8 @@ class Monster
     puts "----------------------------------"
     puts "- Screams: #{actions[:screams]}"
     puts "- Scares: #{actions[:scares]}"
+    puts "- Screams Back: #{actions[:screams_back]}"
+    puts "- Hides: #{actions[:hides]}"
     puts "----------------------------------"
   end
 
@@ -35,6 +39,21 @@ class Monster
     print "and scares you. *Boo*  "
     yield
   end
+
+  def screams_back(&block)
+    actions[:screams_back] += 3
+    block.call
+  end
+
+  def hides(&block)
+    actions[:hides] += 5
+    print "The poor guy runs back to his cave. "
+    yield self if block_given?  #  this makes the monster available to the block
+  end
+
+  def inspect
+    "#{name}, #{actions}"
+  end
 end
 
 monster = Monster.new("Fluffy")
@@ -48,6 +67,16 @@ end
 
 monster.scare do
   puts "(You are now scared.)"
+
+end
+
+monster.screams_back do
+  puts "Congratulations, you have scared the shit out of that poor little monster. You savage."
+end
+
+monster.hides do |m|
+  puts "You're the real monster here."
+  puts m.inspect  # this uses the monster self to be able to show the actions from the block and calls inspect method created
 end
 
 monster.print_scoreboard
